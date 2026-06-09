@@ -4,783 +4,1503 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - SmartCall Manager</title>
-
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #EFF6FF;
+            --secondary: #7C3AED;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --gradient-start: #2563EB;
+            --gradient-end: #7C3AED;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                         'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
             line-height: 1.7;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px;
-            color: #333;
-            background-color: #ffffff;
         }
 
-        h1 {
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #fff;
+            padding: 80px 24px 60px;
             text-align: center;
-            color: #222;
-            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        h2 {
-            color: #222;
-            margin-top: 30px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,.08) 0%,
+                        transparent 60%);
+            pointer-events: none;
         }
 
-        h3 {
-            color: #444;
-            margin-top: 20px;
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,.2);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.3);
         }
 
-        table {
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: .85;
+            max-width: 520px;
+            margin: 0 auto 28px;
+        }
+
+        .hero-meta {
+            display: inline-flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,.18);
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 50px;
+            padding: 6px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            backdrop-filter: blur(6px);
+        }
+
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-wrap {
+            padding: 60px 0 80px;
+        }
+
+        /* ── QUICK NAV ── */
+        .quick-nav {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+            box-shadow: 0 2px 12px rgba(0,0,0,.06);
+        }
+
+        .quick-nav h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+
+        .nav-grid a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 500;
+            background: var(--primary-light);
+            transition: all .2s;
+        }
+
+        .nav-grid a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .nav-grid a .nav-num {
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-grid a:hover .nav-num {
+            background: rgba(255,255,255,.3);
+        }
+
+        /* ── SECTION ── */
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,.05);
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue   { background: #EFF6FF; }
+        .icon-green  { background: #ECFDF5; }
+        .icon-yellow { background: #FFFBEB; }
+        .icon-red    { background: #FEF2F2; }
+        .icon-purple { background: #F5F3FF; }
+        .icon-pink   { background: #FDF2F8; }
+        .icon-teal   { background: #F0FDFA; }
+        .icon-orange { background: #FFF7ED; }
+        .icon-indigo { background: #EEF2FF; }
+        .icon-gray   { background: #F8FAFC; }
+
+        .section-header-text h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .section-header-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .section p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        .section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 28px 0 12px;
+        }
+
+        /* ── LISTS ── */
+        .check-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .check-list li::before {
+            content: '✓';
+            width: 22px;
+            height: 22px;
+            background: #ECFDF5;
+            color: var(--success);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .cross-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cross-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .cross-list li::before {
+            content: '✕';
+            width: 22px;
+            height: 22px;
+            background: #FEF2F2;
+            color: var(--danger);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .dot-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dot-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .dot-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        /* ── CARDS GRID ── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .info-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .info-card .card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .info-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .info-card p {
+            font-size: 13px !important;
+            color: var(--text-secondary);
+            margin: 0 !important;
+        }
+
+        /* ── PERMISSION TABLE ── */
+        .perm-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            font-size: 14px;
+            margin-top: 8px;
         }
 
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background: #f5f5f5;
-            padding: 10px;
+        .perm-table thead th {
+            background: var(--bg);
+            padding: 12px 16px;
             text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border);
         }
 
-        td {
-            padding: 10px;
+        .perm-table tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background .15s;
         }
 
-        pre {
-            background: #f5f5f5;
-            padding: 15px;
-            overflow-x: auto;
-            white-space: pre-wrap;
+        .perm-table tbody tr:last-child { border-bottom: none; }
+        .perm-table tbody tr:hover { background: var(--bg); }
+
+        .perm-table td {
+            padding: 14px 16px;
+            color: var(--text-secondary);
+            vertical-align: top;
         }
 
-        code {
-            font-family: Consolas, monospace;
+        .perm-table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
         }
 
-        ul {
-            padding-left: 25px;
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
         }
 
-        .container {
-            background: #fff;
+        .badge-req  { background: #FEF2F2; color: var(--danger); }
+        .badge-opt  { background: #FFFBEB; color: var(--warning); }
+        .badge-auto { background: #EFF6FF; color: var(--primary); }
+
+        /* ── HIGHLIGHT BOXES ── */
+        .highlight-box {
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .highlight-box .hb-icon { font-size: 22px; flex-shrink: 0; }
+
+        .highlight-box .hb-body h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .highlight-box .hb-body p {
+            font-size: 13px;
+            margin: 0 !important;
+        }
+
+        .hb-blue   { background: #EFF6FF; border: 1px solid #BFDBFE; }
+        .hb-blue   .hb-body h4 { color: var(--primary-dark); }
+        .hb-blue   .hb-body p  { color: #1E40AF; }
+
+        .hb-green  { background: #ECFDF5; border: 1px solid #A7F3D0; }
+        .hb-green  .hb-body h4 { color: #065F46; }
+        .hb-green  .hb-body p  { color: #047857; }
+
+        .hb-yellow { background: #FFFBEB; border: 1px solid #FDE68A; }
+        .hb-yellow .hb-body h4 { color: #92400E; }
+        .hb-yellow .hb-body p  { color: #B45309; }
+
+        .hb-red    { background: #FEF2F2; border: 1px solid #FECACA; }
+        .hb-red    .hb-body h4 { color: #991B1B; }
+        .hb-red    .hb-body p  { color: #B91C1C; }
+
+        /* ── STEP LIST ── */
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gradient-start),
+                        var(--gradient-end));
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-body h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .step-body p {
+            font-size: 14px !important;
+            color: var(--text-secondary);
+            margin: 0 !important;
+        }
+
+        /* ── RIGHTS GRID ── */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
+        }
+
+        .right-item {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            background: var(--bg);
+        }
+
+        .right-item .ri-icon { font-size: 24px; margin-bottom: 10px; }
+
+        .right-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .right-item p {
+            font-size: 13px !important;
+            color: var(--text-secondary);
+            margin: 0 !important;
+        }
+
+        /* ── CONTACT BOX ── */
+        .contact-box {
+            background: linear-gradient(135deg, #EFF6FF, #F5F3FF);
+            border: 1px solid #BFDBFE;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .contact-box .cb-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .contact-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px !important;
+        }
+
+        .contact-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px !important;
+        }
+
+        .contact-box .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37,99,235,.35);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--text-primary);
+            color: rgba(255,255,255,.6);
+            text-align: center;
+            padding: 40px 24px;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .footer p { font-size: 14px; margin-bottom: 6px; }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,.5);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color .2s;
+        }
+
+        .footer-links a:hover { color: #fff; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .section { padding: 24px 20px; }
+            .section-header { flex-direction: column; gap: 14px; }
+            .quick-nav { padding: 20px; }
+            .hero { padding: 60px 20px 48px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .rights-grid { grid-template-columns: 1fr; }
+            .perm-table { font-size: 13px; }
+            .perm-table thead th,
+            .perm-table td { padding: 10px 12px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="hero-icon">🛡️</div>
+    <h1>Privacy Policy</h1>
+    <p>
+        SmartCall Manager is built with your privacy as our top priority.
+        Here's everything you need to know about how we handle your data.
+    </p>
+    <div class="hero-meta">
+        <span class="hero-badge">📅 Effective: June 1, 2025</span>
+        <span class="hero-badge">🔄 Updated: June 1, 2025</span>
+        <span class="hero-badge">📱 Android App</span>
+        <span class="hero-badge">🌐 Version 1.0.0</span>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════ -->
 <div class="container">
-
-    <h1>Privacy Policy for SmartCall Manager</h1>
-PRIVACY POLICY
-Privacy Policy for SmartCall Manager
-
-Effective Date: January 1, 2025
-Last Updated: January 1, 2025
-Version: 1.0
-
-Developer/Company Name: [Your Company Name]
-Developer Email: [your-email@domain.com]
-Developer Address: [Your Full Address]
-Website: [yourwebsite.com]
-App Name: SmartCall Manager
-Package Name: com.smartcall.manager
-Platform: Android
-Google Play Store Link: [Your Play Store Link]
-
-TABLE OF CONTENTS
-text
-
-1.  Introduction & Overview
-2.  Information We Collect
-3.  How We Use Your Information
-4.  Data Storage & Security
-5.  Third-Party Services
-6.  Permissions We Request & Why
-7.  Data Sharing & Disclosure
-8.  Data Retention
-9.  Your Rights & Choices
-10. Children's Privacy
-11. Sensitive Data Handling
-12. Call Screening & Phone Features
-13. Contacts Access
-14. Notifications
-15. Changes to This Policy
-16. Contact Us
-17. Consent
-18. Jurisdiction-Specific Rights
-    - GDPR (European Users)
-    - CCPA (California Users)
-    - India (PDPB Users)
-1. INTRODUCTION & OVERVIEW
-Welcome to SmartCall Manager ("the App", "our App", "the Service"). This Privacy Policy explains how [Your Company Name] ("we", "us", "our", "Developer") collects, uses, stores, and protects your personal information when you use our mobile application.
-
-SmartCall Manager is a call management application designed to help business owners and professionals manage incoming phone calls by:
-
-Setting business hours during which calls are allowed
-Enabling vacation/holiday blocking periods
-Creating a whitelist of VIP contacts who can always reach you
-Maintaining an inbox of all blocked calls for later callback
-Blocking unknown and unwanted calls automatically
-This Privacy Policy is designed to be:
-
-Transparent about what data we collect
-Clear about why we collect it
-Honest about how we use it
-Compliant with Google Play Store policies
-Compliant with GDPR, CCPA, and applicable laws
-By downloading, installing, or using SmartCall Manager, you agree to the terms of this Privacy Policy. If you do not agree, please uninstall the application.
-
-2. INFORMATION WE COLLECT
-2.1 Information You Provide Directly
-Data Type	What We Collect	Why
-Business Hours	Start time, end time, working days	To block calls outside your set hours
-Blocked Periods	Start date, end date, reason (optional)	To enable vacation/holiday mode
-VIP Contact Names	Names you enter or import	To identify allowed callers
-VIP Phone Numbers	Phone numbers you whitelist	To allow specific callers through
-App Settings	Your preferences and configurations	To provide personalized experience
-2.2 Information Collected Automatically
-Data Type	What We Collect	Why
-Blocked Call Records	Phone number, date, time of blocked calls	To populate your call inbox
-Call Timestamps	Date and time of each blocked call	To show when calls were made
-App Usage Data	Which features you use, settings changes	To improve app functionality
-2.3 Phone & Device Information
-Data Type	What We Collect	Why
-Incoming Call Numbers	Phone numbers of incoming calls	To determine if call should be blocked
-Call State	Whether a call is incoming, active, or ended	For call screening decisions
-Device OS Version	Android version	For compatibility purposes
-2.4 Information We DO NOT Collect
-We want to be explicitly clear about what we NEVER collect:
-
-text
-
-✗ We do NOT collect call audio/recordings
-✗ We do NOT collect SMS or message content
-✗ We do NOT collect your location data
-✗ We do NOT collect your browsing history
-✗ We do NOT collect financial information
-✗ We do NOT collect biometric data
-✗ We do NOT collect your email address (unless for support)
-✗ We do NOT collect social media data
-✗ We do NOT upload your contacts to any server
-✗ We do NOT sell your data to third parties
-✗ We do NOT use your data for advertising
-✗ We do NOT share your data with advertisers
-✗ We do NOT track you across other apps
-✗ We do NOT use your data for AI/ML training externally
-3. HOW WE USE YOUR INFORMATION
-We use the information we collect solely to provide the App's core functionality:
-
-3.1 Core App Functions
-Call Blocking & Screening:
-
-Comparing incoming call numbers against your whitelist
-Checking the current time against your set business hours
-Checking if a vacation/holiday block is currently active
-Making the decision to allow or block each incoming call
-Inbox Management:
-
-Saving the phone number and timestamp of blocked calls
-Displaying blocked calls in your inbox
-Allowing you to call back from the inbox
-Settings Management:
-
-Saving your business hours preferences
-Storing your vacation/holiday periods
-Maintaining your VIP contact whitelist
-3.2 App Improvement (Local Only)
-Detecting crashes and errors (stored locally)
-Improving app performance
-Fixing bugs and issues
-3.3 What We Do NOT Do With Your Data
-text
-
-✗ We do NOT use your data for targeted advertising
-✗ We do NOT analyze your call patterns for marketing
-✗ We do NOT share insights from your data with anyone
-✗ We do NOT build profiles about you
-✗ We do NOT use your data for any purpose beyond the app
-4. DATA STORAGE & SECURITY
-4.1 Where Your Data Lives
-ALL data collected by SmartCall Manager is stored LOCALLY on your device.
-
-text
-
-Storage Location: Your Android Device Only
-Storage Method: SharedPreferences (encrypted)
-Cloud Storage: NONE
-External Servers: NONE
-Third-Party Databases: NONE
-Your data NEVER leaves your device. We do not operate any backend servers that receive, process, or store your personal information.
-
-4.2 Security Measures
-We implement the following security measures to protect your data:
-
-text
-
-🔒 Local Encrypted Storage
-   └── SharedPreferences with encryption
-   └── Android Keystore for sensitive data
-
-🔒 No Network Transmission
-   └── Zero data sent over internet
-   └── No API calls with personal data
-   └── No cloud sync (by design)
-
-🔒 App Sandboxing
-   └── Android OS-level isolation
-   └── Other apps cannot access our data
-   └── Protected by Android security model
-
-🔒 Permission Controls
-   └── Minimal permissions requested
-   └── Each permission has clear purpose
-   └── No background data collection
-4.3 Data Breach Notification
-In the unlikely event of a security vulnerability that could affect your local data, we will:
-
-Release an immediate app update with the fix
-Notify users through the Play Store update notes
-Provide guidance via our support email within 72 hours
-4.4 Device Security Dependency
-Since all data is stored locally, the security of your data also depends on:
-
-Your device's screen lock/PIN/biometric settings
-Your device's operating system being up to date
-Not rooting or jailbreaking your device
-Using trusted app stores only
-We recommend enabling device encryption and screen lock for maximum data protection.
-
-5. THIRD-PARTY SERVICES
-SmartCall Manager uses minimal third-party services. Below is a complete, transparent list:
-
-5.1 Third-Party Libraries Used (Local Only)
-Library	Purpose	Data Sent?	Privacy Policy
-Flutter (Google)	App framework	No	Flutter Privacy
-flutter_local_notifications	Device notifications	No (local only)	Open Source
-permission_handler	Permission management	No	Open Source
-flutter_contacts	Reading device contacts	No (never uploaded)	Open Source
-sqflite	Local database	No	Open Source
-shared_preferences	Local settings storage	No	Open Source
-provider	State management	No	Open Source
-intl	Date/time formatting	No	Open Source
-5.2 Google Play Services
-As the app is distributed on Google Play Store:
-
-Google Play Store collects download and crash data per their own privacy policy
-We receive anonymized crash reports through Play Console
-Google's Privacy Policy applies to Play Store interactions
-See: Google Privacy Policy
-5.3 Android Telecom Framework
-We use Android's built-in CallScreeningService API
-This is a system-level Android API (not a third party)
-No data is shared with Google through this API
-All call decisions happen locally on-device
-5.4 NO Advertising Networks
-text
-
-✗ No Google AdMob
-✗ No Facebook Audience Network
-✗ No any advertising SDK
-✗ No analytics platforms (Firebase Analytics, etc.)
-✗ No crash reporting platforms (unless noted)
-✗ No A/B testing platforms
-✗ No user tracking SDKs
-6. PERMISSIONS WE REQUEST & WHY
-We request only the permissions absolutely necessary for the app to function. Here is a complete explanation of every permission:
-
-6.1 Permission Details
-READ_PHONE_STATE
-What it does: Allows the app to detect incoming calls
-
-Why we need it: To know when a call is incoming so we can apply your blocking rules
-
-What we do NOT do:
-
-Read your call history without your knowledge
-Access your SIM card information for tracking
-Monitor your outgoing calls
-Alternative if denied: The app cannot detect incoming calls and call blocking will not work
-
-READ_CALL_LOG
-What it does: Allows reading the device's call log
-
-Why we need it: To display recently blocked calls in your inbox
-
-What we do NOT do:
-
-Upload your call history to any server
-Share your call patterns with anyone
-Use call history for profiling
-Alternative if denied: Inbox history may be limited; core blocking still works
-
-ANSWER_PHONE_CALLS
-What it does: Allows the app to programmatically reject calls
-
-Why we need it: To automatically reject/block calls that don't meet your allowed criteria
-
-What we do NOT do:
-
-Answer calls on your behalf
-Listen to your conversations
-Record any audio
-Alternative if denied: Calls cannot be automatically blocked
-
-READ_CONTACTS
-What it does: Allows reading your device contact list
-
-Why we need it: To let you easily add contacts from your phonebook to your VIP whitelist
-
-What we do NOT do:
-
-Upload your contacts to any server
-Share your contacts with anyone
-Access contacts for any purpose other than VIP selection
-Alternative if denied: You can still add VIP contacts manually by typing the name and number
-
-RECEIVE_BOOT_COMPLETED
-What it does: Allows the app to know when the device restarts
-
-Why we need it: To ensure call blocking settings remain active after device restart
-
-What we do NOT do:
-
-Run heavy background processes
-Collect data at startup
-Track device restart frequency
-Alternative if denied: Call blocking may not work after device restart until you open the app
-
-FOREGROUND_SERVICE
-What it does: Allows running a service in the foreground
-
-Why we need it: The CallScreeningService needs to run reliably to screen calls
-
-What we do NOT do:
-
-Run unnecessary background tasks
-Use excessive battery
-Collect data in the background
-POST_NOTIFICATIONS
-What it does: Allows sending push notifications to your device
-
-Why we need it: To notify you when calls are blocked and inform you of vacation mode status
-
-What we do NOT do:
-
-Send marketing notifications
-Send promotional content
-Send notifications without your context
-Alternative if denied: You won't receive blocked call notifications; check inbox manually
-
-CALL_PHONE
-What it does: Allows initiating phone calls
-
-Why we need it: To enable the "Call Back" feature from your inbox
-
-What we do NOT do:
-
-Make calls without your explicit tap
-Make calls automatically
-Access premium numbers
-Alternative if denied: You cannot use the one-tap call-back feature
-
-6.2 Permission Summary Table
-Permission	Required?	Data Leaves Device?	User Can Deny?
-READ_PHONE_STATE	Yes (core)	No	Yes (breaks core feature)
-READ_CALL_LOG	Recommended	No	Yes (limited inbox)
-ANSWER_PHONE_CALLS	Yes (core)	No	Yes (no auto-block)
-READ_CONTACTS	Optional	No	Yes (manual entry only)
-RECEIVE_BOOT_COMPLETED	Recommended	No	Yes (restart issue)
-FOREGROUND_SERVICE	Yes (core)	No	No (system)
-POST_NOTIFICATIONS	Optional	No	Yes (no alerts)
-CALL_PHONE	Optional	No	Yes (no call-back)
-7. DATA SHARING & DISCLOSURE
-7.1 We Do Not Sell Your Data
-We have never sold, and will never sell, your personal information to any third party.
-
-7.2 We Do Not Share Your Data
-Your data is not shared with:
-
-text
-
-✗ Advertisers
-✗ Data brokers
-✗ Marketing companies
-✗ Analytics companies
-✗ Other app developers
-✗ Business partners
-✗ Investors
-✗ Any third parties whatsoever
-7.3 When We May Disclose Information
-We may only disclose information in these extremely limited circumstances:
-
-Legal Requirements:
-
-If required by valid court order
-If required by applicable law or regulation
-To protect against fraud or illegal activity
-To protect the rights, property, or safety of users
-Important Note: Since all your data is stored locally on your device, we do not actually possess your personal data on our servers. Therefore, any legal demand would yield no personal data from us.
-
-Business Transfer:
-In the unlikely event of company merger, acquisition, or asset sale, users will be:
-
-Notified via app update and email (if provided)
-Given 30 days notice before any transfer
-Given the option to delete their local data
-8. DATA RETENTION
-8.1 Your Data, Your Control
-Since all data is stored locally on your device, you have complete control over your data at all times.
-
-8.2 Data Lifecycle
-Data Type	Where Stored	How to Delete
-Business Hours Settings	Device Local Storage	App Settings > Clear Data
-VIP Contacts	Device Local Storage	Whitelist Screen > Remove
-Blocked Call Log	Device Local Storage	Inbox > Clear All
-Vacation Periods	Device Local Storage	App Settings > Clear Data
-All App Data	Device Local Storage	Android Settings > Apps > SmartCall Manager > Clear Data
-8.3 Automatic Data Cleanup
-Blocked call logs older than 90 days are automatically removed
-Expired vacation periods are automatically deactivated
-You can manually clear all data at any time
-8.4 Data After Uninstall
-When you uninstall SmartCall Manager:
-
-All locally stored data is automatically deleted by Android
-No data remains on any server (because there is none)
-Your data is completely gone upon uninstallation
-9. YOUR RIGHTS & CHOICES
-9.1 Your Rights
-You have the following rights regarding your data:
-
-Right	How to Exercise
-Right to Access	Open the app - all your data is visible within the app
-Right to Correction	Edit any setting directly within the app
-Right to Deletion	Clear data within app or uninstall
-Right to Portability	Export not currently available (data is local)
-Right to Restriction	Turn off specific features in Settings
-Right to Object	Disable call blocking in Settings
-Right to Withdraw Consent	Uninstall the app at any time
-9.2 How to Delete Your Data
-Option 1: Within the App
-
-text
-
-Settings → Clear Call Log → Confirm
-Settings → Reset All Settings → Confirm
-Option 2: Android Device Settings
-
-text
-
-Android Settings → Apps → SmartCall Manager
-→ Storage → Clear Data
-Option 3: Uninstall
-
-text
-
-Uninstalling the app removes ALL data permanently
-9.3 Opt-Out Choices
-Feature	How to Opt Out
-Call Blocking	Toggle off in Home Screen
-Business Hours Filter	Toggle off in Business Hours
-Vacation Mode	End vacation in Blocked Period screen
-Notifications	Android Settings → App Notifications → SmartCall Manager
-Contact Access	Android Settings → Apps → Permissions → Contacts
-10. CHILDREN'S PRIVACY
-10.1 Age Restriction
-SmartCall Manager is not designed for or directed at children under the age of 13 (or under 16 in the European Union).
-
-10.2 Our Policy
-We do not knowingly collect personal information from children under 13
-The app requires understanding of business management concepts
-The app is categorized as a Business/Productivity tool
-Target users are adults and business professionals
-10.3 If We Discover Child Data
-If we discover that a child under 13 has provided us with personal information, we will:
-
-Immediately take steps to delete such information
-Notify the parent/guardian if possible
-Block future access from that device if necessary
-10.4 Parental Concerns
-If you are a parent and believe your child has used this app, please contact us at:
-[privacy@yourdomain.com]
-
-We will respond within 48 hours and take appropriate action.
-
-11. SENSITIVE DATA HANDLING
-11.1 Phone Numbers
-Phone numbers in your VIP whitelist and call inbox are considered sensitive data. We handle them as follows:
-
-text
-
-Storage:    Encrypted local storage only
-Access:     Only by the app itself
-Sharing:    Never shared or transmitted
-Deletion:   Immediately upon your request
-Purpose:    Solely for call blocking decisions
-11.2 Call Records
-Blocked call records (number + timestamp) are handled as:
-
-text
-
-Storage:    Local device storage
-Purpose:    Show in inbox for callback
-Retention:  90 days maximum (auto-cleanup)
-Access:     Only visible to you
-Sharing:    Never transmitted anywhere
-11.3 Contact Information
-Contacts imported to VIP list are handled as:
-
-text
-
-Source:     Your device contacts (with permission)
-Processing: Locally only
-Storage:    Only selected contacts, not full phonebook
-Upload:     NEVER
-Sharing:    NEVER
-12. CALL SCREENING & PHONE FEATURES
-12.1 Android CallScreeningService
-Our app uses Android's official CallScreeningService API. Here is exactly what happens during call screening:
-
-text
-
-Step 1: Incoming call arrives at your phone
-Step 2: Android OS notifies our CallScreeningService
-Step 3: We extract ONLY the phone number
-Step 4: We check: Is it in VIP list? → Allow
-Step 5: We check: Is vacation mode active? → Block (if not VIP)
-Step 6: We check: Is it business hours? → Allow/Block
-Step 7: Decision is made locally, instantly
-Step 8: If blocked: Number + timestamp saved to inbox
-Step 9: NOTHING is sent to any external service
-12.2 What Happens When a Call is Blocked
-The call is silently rejected (caller gets standard busy/voicemail)
-The number and timestamp are saved to your local inbox
-A notification appears on your device
-The caller is NOT notified that they were specifically blocked by an app
-12.3 What Callers Experience
-When their call is blocked:
-
-They may hear a busy signal or be sent to voicemail
-They are NOT told the call was blocked by an app
-They can still leave a voicemail (standard behavior)
-They can call back after your blocking period ends
-13. CONTACTS ACCESS
-13.1 Why We Access Contacts
-We request contact access only when you tap "Add from Contacts" in the VIP whitelist screen. This is an on-demand, user-initiated action.
-
-13.2 What We Do With Contact Data
-text
-
-✅ Display your contacts list within the app for you to choose from
-✅ Save ONLY the name and number of contacts YOU select
-✅ Use saved numbers for call screening decisions
-
-✗ We do NOT read all contacts automatically
-✗ We do NOT upload any contacts to servers
-✗ We do NOT scan contacts in the background
-✗ We do NOT sync contacts anywhere
-✗ We do NOT read contact emails, addresses, or other fields
-13.3 Contacts Data Flow
-text
-
-Your Phonebook
-      ↓
-[You tap "Add from Contacts"]
-      ↓
-Contacts displayed IN-APP only
-      ↓
-[You select specific contact]
-      ↓
-ONLY that contact's name + number saved locally
-      ↓
-Used for VIP whitelist matching
-      ↓
-NEVER transmitted anywhere
-14. NOTIFICATIONS
-14.1 Types of Notifications We Send
-Notification Type	Trigger	Contains
-Blocked Call Alert	When a call is blocked	"Call from [number] was blocked. Check inbox."
-Vacation Mode Active	When vacation mode starts	"Vacation mode active until [date]"
-Vacation Mode Ended	When vacation period expires	"Vacation mode has ended"
-14.2 What Notifications Do NOT Contain
-text
-
-✗ Marketing or promotional content
-✗ Third-party advertisements
-✗ Links to websites
-✗ Requests for personal information
-✗ Phishing attempts
-14.3 Managing Notifications
-You can manage notifications in two ways:
-
-Android Settings: Settings → Apps → SmartCall Manager → Notifications
-In-App: Settings → Notification Preferences
-15. CHANGES TO THIS POLICY
-15.1 How We Update This Policy
-We may update this Privacy Policy from time to time. When we do:
-
-We will update the "Last Updated" date at the top
-We will publish the new version on our website
-We will notify users through the Play Store update notes
-For significant changes, we will show an in-app notification
-15.2 What Constitutes a Significant Change
-Significant changes include:
-
-Collecting new types of personal data
-Sharing data with new third parties
-Using data for new purposes
-Changes to data retention periods
-Changes to user rights
-15.3 Your Continued Use
-If you continue using the app after a policy update, you agree to the updated terms. If you disagree, please uninstall the app and contact us to request data deletion.
-
-15.4 Policy Version History
-Version	Date	Changes
-1.0	January 1, 2025	Initial privacy policy
-16. CONTACT US
-We take privacy seriously. If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:
-
-text
-
-📧 Primary Email:    privacy@[yourdomain].com
-📧 Support Email:    support@[yourdomain].com
-📬 Mailing Address:  [Your Full Company Address]
-                     [City, State, ZIP]
-                     [Country]
-🌐 Website:          www.[yourdomain].com
-📱 In-App Support:   Settings → Contact Support
-Response Times:
-
-General inquiries: Within 5 business days
-Data deletion requests: Within 30 days
-GDPR requests: Within 30 days (as required by law)
-Urgent privacy concerns: Within 48 hours
-17. CONSENT
-By using SmartCall Manager, you:
-
-Acknowledge that you have read this Privacy Policy
-Understand what data we collect and why
-Consent to the data practices described in this policy
-Confirm you are at least 13 years old (or 16 in EU)
-Agree that all data processing occurs locally on your device
-Your consent can be withdrawn at any time by uninstalling the application.
-
-18. JURISDICTION-SPECIFIC RIGHTS
-18.1 🇪🇺 GDPR — European Union Users
-If you are located in the European Economic Area (EEA), United Kingdom, or Switzerland, you have additional rights under the General Data Protection Regulation (GDPR):
-
-Legal Basis for Processing:
-
-text
-
-Processing Type          | Legal Basis
-------------------------|------------------
-Call screening          | Legitimate interest / Consent
-VIP whitelist           | Consent (you add contacts)
-Business hours settings | Consent (you configure)
-Blocked call log        | Legitimate interest
-Your GDPR Rights:
-
-Right	Description	How to Exercise
-Right of Access (Art. 15)	Know what data we hold	Contact privacy@yourdomain.com
-Right to Rectification (Art. 16)	Correct inaccurate data	Edit within app
-Right to Erasure (Art. 17)	"Right to be forgotten"	Clear data in app or uninstall
-Right to Restriction (Art. 18)	Limit how we use data	Disable features in app
-Right to Portability (Art. 20)	Receive your data in portable format	Contact us
-Right to Object (Art. 21)	Object to processing	Contact us or uninstall
-Right to Withdraw Consent	Withdraw at any time	Uninstall app
-Data Controller:
-
-text
-
-[Your Company Name]
-[Address]
-[Country]
-Email: privacy@yourdomain.com
-Supervisory Authority:
-You have the right to lodge a complaint with your local data protection authority. A list of EU supervisory authorities is available at: https://edpb.europa.eu/about-edpb/board/members_en
-
-Data Protection Officer (DPO):
-If applicable: [DPO Name] — dpo@yourdomain.com
-
-International Data Transfers:
-Since all data is stored locally on your device, there are no international data transfers.
-
-18.2 🇺🇸 CCPA — California Users
-If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):
-
-Your California Rights:
-
-Right	Description
-Right to Know	Know what personal information we collect
-Right to Delete	Request deletion of your personal information
-Right to Opt-Out	Opt out of sale of personal information
-Right to Non-Discrimination	Not be discriminated against for exercising rights
-Right to Correct	Correct inaccurate personal information
-Right to Limit	Limit use of sensitive personal information
-Personal Information We Collect (CCPA Categories):
-
-CCPA Category	Collected?	Examples
-Identifiers	Limited	Phone numbers in whitelist
-Personal records	Limited	Blocked call log
-Commercial information	No	N/A
-Biometric information	No	N/A
-Internet activity	No	N/A
-Geolocation data	No	N/A
-Sensory data	No	N/A
-Professional information	No	N/A
-Inferences	No	N/A
-We Do Not Sell Personal Information:
-SmartCall Manager does not sell, rent, or trade your personal information to any third party. This applies to all California residents.
-
-To Exercise Your California Rights:
-Email: privacy@yourdomain.com
-Subject: "California Privacy Rights Request"
-Response time: Within 45 days
-
-18.3 🇮🇳 India — Digital Personal Data Protection Act (DPDP) 2023
-If you are located in India, your data is protected under the Digital Personal Data Protection Act, 2023:
-
-As a Data Fiduciary, we:
-
-Process your data only for specified purposes
-Maintain reasonable security safeguards
-Delete data when no longer needed
-Honor your rights as a Data Principal
-Your Rights Under DPDP:
-
-Right to information about processing
-Right to correction and erasure
-Right to grievance redressal
-Right to nominate a representative
-Grievance Officer (India):
-
-text
-
-Name: [Grievance Officer Name]
-Email: grievance@yourdomain.com
-Address: [Indian Address if applicable]
-Response Time: Within 48 hours for acknowledgment
-               Within 30 days for resolution
-18.4 🇬🇧 UK GDPR
-For users in the United Kingdom, the UK GDPR (retained EU law) applies. Your rights are similar to EU GDPR rights. Contact our DPO at dpo@yourdomain.com for UK-specific requests.
-
-UK Supervisory Authority: Information Commissioner's Office (ICO) — ico.org.uk
-
-18.5 🇨🇦 Canada — PIPEDA
-For Canadian users, we comply with the Personal Information Protection and Electronic Documents Act (PIPEDA). You have the right to access your personal information and challenge its accuracy. Contact us at privacy@yourdomain.com.
-
-This Privacy Policy was last reviewed by legal counsel on [Date]. This policy is written in plain English to ensure maximum transparency and understanding.
-
-</div>
+    <div class="content-wrap">
+
+        <!-- Quick Nav -->
+        <nav class="quick-nav">
+            <h3>📋 Table of Contents</h3>
+            <div class="nav-grid">
+                <a href="#overview">
+                    <span class="nav-num">1</span> Overview
+                </a>
+                <a href="#data-collected">
+                    <span class="nav-num">2</span> Data We Collect
+                </a>
+                <a href="#permissions">
+                    <span class="nav-num">3</span> Permissions
+                </a>
+                <a href="#data-use">
+                    <span class="nav-num">4</span> How We Use Data
+                </a>
+                <a href="#data-storage">
+                    <span class="nav-num">5</span> Data Storage
+                </a>
+                <a href="#data-sharing">
+                    <span class="nav-num">6</span> Data Sharing
+                </a>
+                <a href="#call-screening">
+                    <span class="nav-num">7</span> Call Screening
+                </a>
+                <a href="#your-rights">
+                    <span class="nav-num">8</span> Your Rights
+                </a>
+                <a href="#children">
+                    <span class="nav-num">9</span> Children
+                </a>
+                <a href="#changes">
+                    <span class="nav-num">10</span> Policy Changes
+                </a>
+                <a href="#contact">
+                    <span class="nav-num">11</span> Contact Us
+                </a>
+            </div>
+        </nav>
+
+        <!-- ── 1. Overview ── -->
+        <section class="section" id="overview">
+            <div class="section-header">
+                <div class="section-icon icon-blue">👁️</div>
+                <div class="section-header-text">
+                    <h2>1. Overview &amp; Our Commitment</h2>
+                    <p>Understanding who we are and what this policy covers</p>
+                </div>
+            </div>
+
+            <p>
+                Welcome to <strong>SmartCall Manager</strong> — the app that helps business
+                owners reclaim their personal time by intelligently managing incoming phone
+                calls. This Privacy Policy explains how we collect, use, and protect your
+                information when you use our Android application.
+            </p>
+
+            <div class="highlight-box hb-green">
+                <span class="hb-icon">🔒</span>
+                <div class="hb-body">
+                    <h4>Our Core Privacy Promise</h4>
+                    <p>
+                        SmartCall Manager is a <strong>100% offline, on-device application</strong>.
+                        All your data — contacts, call logs, business hours, and settings —
+                        stays exclusively on your phone. We do not operate any servers,
+                        we do not collect analytics, and we never sell your data.
+                    </p>
+                </div>
+            </div>
+
+            <p>
+                By installing and using SmartCall Manager, you agree to the practices
+                described in this policy. If you do not agree, please uninstall the application.
+            </p>
+
+            <div class="cards-grid">
+                <div class="info-card">
+                    <div class="card-icon">🏢</div>
+                    <h4>Developer</h4>
+                    <p>SmartCall Manager Team — Independent Developer</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">📱</div>
+                    <h4>Platform</h4>
+                    <p>Android (API 24+) — No iOS version</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🌍</div>
+                    <h4>Jurisdiction</h4>
+                    <p>International — Applicable laws of user's country apply</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">📧</div>
+                    <h4>Contact</h4>
+                    <p>privacy@smartcallmanager.app</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 2. Data Collected ── -->
+        <section class="section" id="data-collected">
+            <div class="section-header">
+                <div class="section-icon icon-purple">📊</div>
+                <div class="section-header-text">
+                    <h2>2. Data We Collect</h2>
+                    <p>A transparent list of every piece of information we access</p>
+                </div>
+            </div>
+
+            <h3>✅ Data Stored Locally on Your Device</h3>
+            <ul class="check-list">
+                <li>
+                    <strong>Business Hours Configuration</strong> — The working days and
+                    start/end times you set for call filtering
+                </li>
+                <li>
+                    <strong>Vacation / Holiday Periods</strong> — Date and time ranges
+                    you configure for blocking all non-VIP calls
+                </li>
+                <li>
+                    <strong>VIP Contact List (Whitelist)</strong> — Names and phone numbers
+                    of contacts you designate as always-allowed callers
+                </li>
+                <li>
+                    <strong>Blocked Call Inbox</strong> — A log of calls that were blocked,
+                    including phone number and timestamp
+                </li>
+                <li>
+                    <strong>App Settings &amp; Preferences</strong> — Your feature toggle
+                    states and notification preferences
+                </li>
+            </ul>
+
+            <h3>❌ Data We Never Collect</h3>
+            <ul class="cross-list">
+                <li>Personal identity information (name, email, address)</li>
+                <li>Location data (GPS, network, or IP-based)</li>
+                <li>Call audio, recordings, or conversation content</li>
+                <li>Device identifiers (IMEI, advertising ID, Android ID)</li>
+                <li>Usage analytics or app behavior tracking</li>
+                <li>Crash reports or diagnostic data sent to our servers</li>
+                <li>Payment or financial information</li>
+                <li>Social media profiles or linked accounts</li>
+            </ul>
+
+            <div class="highlight-box hb-blue">
+                <span class="hb-icon">ℹ️</span>
+                <div class="hb-body">
+                    <h4>No Account Required</h4>
+                    <p>
+                        SmartCall Manager requires no account creation, no sign-in, and
+                        no email registration. You can use every feature completely
+                        anonymously.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 3. Permissions ── -->
+        <section class="section" id="permissions">
+            <div class="section-header">
+                <div class="section-icon icon-yellow">🔑</div>
+                <div class="section-header-text">
+                    <h2>3. Android Permissions Explained</h2>
+                    <p>Why we request each permission and exactly how it's used</p>
+                </div>
+            </div>
+
+            <p>
+                SmartCall Manager requests only the permissions essential for its core
+                functionality. Below is a detailed explanation of each permission.
+            </p>
+
+            <div style="overflow-x:auto; border-radius:12px; border:1px solid var(--border);">
+                <table class="perm-table">
+                    <thead>
+                        <tr>
+                            <th>Permission</th>
+                            <th>Type</th>
+                            <th>Why We Need It</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>READ_PHONE_STATE</td>
+                            <td><span class="badge badge-req">Required</span></td>
+                            <td>
+                                Detects incoming calls so the app can evaluate whether
+                                to allow or block based on your rules
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ANSWER_PHONE_CALLS</td>
+                            <td><span class="badge badge-req">Required</span></td>
+                            <td>
+                                Programmatically declines (rejects) calls that fall
+                                outside your allowed hours or blocked periods
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>READ_CALL_LOG</td>
+                            <td><span class="badge badge-req">Required</span></td>
+                            <td>
+                                Reads the system call log to populate your blocked
+                                calls inbox so you can call back later
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>READ_CONTACTS</td>
+                            <td><span class="badge badge-opt">Optional</span></td>
+                            <td>
+                                Lets you pick VIP contacts from your phone's address
+                                book. You can still add contacts manually without
+                                this permission
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CALL_PHONE</td>
+                            <td><span class="badge badge-opt">Optional</span></td>
+                            <td>
+                                Enables the one-tap "Call Back" button in the
+                                blocked calls inbox
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RECEIVE_BOOT_COMPLETED</td>
+                            <td><span class="badge badge-auto">Auto</span></td>
+                            <td>
+                                Ensures call screening protection is active
+                                immediately after the device restarts without
+                                requiring you to reopen the app
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>FOREGROUND_SERVICE</td>
+                            <td><span class="badge badge-auto">Auto</span></td>
+                            <td>
+                                Keeps the call screening service running reliably
+                                so calls are never missed by the filter
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>POST_NOTIFICATIONS</td>
+                            <td><span class="badge badge-opt">Optional</span></td>
+                            <td>
+                                Sends you a notification when a call is blocked
+                                and when vacation mode is active (Android 13+)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CALL_SCREENING Role</td>
+                            <td><span class="badge badge-req">Required</span></td>
+                            <td>
+                                Android system role that grants authority to
+                                screen (evaluate and optionally block) incoming
+                                calls before they reach your phone's ringer
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box hb-yellow">
+                <span class="hb-icon">⚠️</span>
+                <div class="hb-body">
+                    <h4>Call Screening Role — Special Permission</h4>
+                    <p>
+                        The Call Screening Role is a special Android permission that allows
+                        the app to intercept incoming calls. Android requires your explicit
+                        approval via a system dialog. This role can be revoked at any time
+                        in your device's Phone settings under "Caller ID &amp; Spam" or
+                        "Call Screening."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 4. How We Use Data ── -->
+        <section class="section" id="data-use">
+            <div class="section-header">
+                <div class="section-icon icon-green">⚙️</div>
+                <div class="section-header-text">
+                    <h2>4. How We Use Your Data</h2>
+                    <p>Every use case explained — nothing hidden</p>
+                </div>
+            </div>
+
+            <p>
+                Every piece of data accessed by SmartCall Manager is used for one
+                purpose only: <strong>to provide you with call management features.</strong>
+                Here is exactly how each data type is used:
+            </p>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <h4>Real-Time Call Decision</h4>
+                        <p>
+                            When a call arrives, the app checks: Is vacation mode active?
+                            Is the current time within business hours? Is the caller in the
+                            VIP whitelist? Based on these checks, the call is either allowed
+                            or silently rejected.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <h4>Inbox Population</h4>
+                        <p>
+                            Blocked caller phone numbers and timestamps are saved to your
+                            on-device inbox so you can review missed callers and call them
+                            back at your convenience.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <h4>VIP Whitelist Matching</h4>
+                        <p>
+                            Contact names and phone numbers you add to the VIP list are
+                            compared against incoming caller IDs to ensure important
+                            contacts can always reach you.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <h4>Settings Persistence</h4>
+                        <p>
+                            Your business hours, vacation periods, and toggle states are
+                            saved locally using Android SharedPreferences so your
+                            configuration is preserved between app sessions.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div class="step-body">
+                        <h4>User Notifications</h4>
+                        <p>
+                            If you grant notification permission, the app sends local
+                            (on-device) alerts when calls are blocked or when vacation
+                            mode activates. These notifications are generated on your
+                            device — no data is sent to any server.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 5. Data Storage ── -->
+        <section class="section" id="data-storage">
+            <div class="section-header">
+                <div class="section-icon icon-teal">💾</div>
+                <div class="section-header-text">
+                    <h2>5. Data Storage &amp; Security</h2>
+                    <p>Where your data lives and how it's protected</p>
+                </div>
+            </div>
+
+            <h3>Storage Location</h3>
+            <p>
+                All data is stored in your device's private application sandbox using
+                Android's <code>SharedPreferences</code> and internal storage. This
+                storage is:
+            </p>
+            <ul class="check-list">
+                <li>Accessible only to SmartCall Manager — no other apps can read it</li>
+                <li>Protected by Android's built-in application sandboxing</li>
+                <li>Encrypted at rest on devices with Android's file-based encryption</li>
+                <li>Automatically deleted when you uninstall the application</li>
+                <li>Not backed up to any cloud service by this app</li>
+            </ul>
+
+            <div class="highlight-box hb-blue">
+                <span class="hb-icon">☁️</span>
+                <div class="hb-body">
+                    <h4>Regarding Android Auto-Backup</h4>
+                    <p>
+                        Android may include app data in your Google account backup depending
+                        on your device settings. This backup is governed by Google's Privacy
+                        Policy, not ours. You can disable auto-backup for this app in your
+                        Android backup settings if preferred.
+                    </p>
+                </div>
+            </div>
+
+            <h3>Retention Period</h3>
+            <ul class="dot-list">
+                <li>
+                    <strong>Call inbox logs</strong> — Kept until you manually delete them
+                    via the "Clear All" option or uninstall the app
+                </li>
+                <li>
+                    <strong>Settings &amp; whitelist</strong> — Kept until you modify or
+                    delete them, or uninstall the app
+                </li>
+                <li>
+                    <strong>Expired vacation periods</strong> — Automatically deactivated
+                    but record remains until you clear it
+                </li>
+            </ul>
+
+            <h3>Security Measures</h3>
+            <ul class="check-list">
+                <li>No network communication — zero attack surface for remote breaches</li>
+                <li>No third-party SDKs with data collection capabilities</li>
+                <li>Phone numbers in whitelist are matched locally, never transmitted</li>
+                <li>
+                    Regular code reviews to ensure no unintended data exfiltration
+                </li>
+            </ul>
+        </section>
+
+        <!-- ── 6. Data Sharing ── -->
+        <section class="section" id="data-sharing">
+            <div class="section-header">
+                <div class="section-icon icon-red">🚫</div>
+                <div class="section-header-text">
+                    <h2>6. Data Sharing &amp; Third Parties</h2>
+                    <p>Who else can see your data — the answer is nobody</p>
+                </div>
+            </div>
+
+            <div class="highlight-box hb-green">
+                <span class="hb-icon">✅</span>
+                <div class="hb-body">
+                    <h4>We Share Zero Data with Third Parties</h4>
+                    <p>
+                        SmartCall Manager does not share, sell, rent, trade, or transmit
+                        any of your data to any third party under any circumstances.
+                    </p>
+                </div>
+            </div>
+
+            <h3>Third-Party Libraries Used</h3>
+            <p>
+                Our app uses open-source Flutter packages. None of these collect or
+                transmit user data:
+            </p>
+
+            <ul class="dot-list">
+                <li>
+                    <strong>provider</strong> — State management (in-memory only)
+                </li>
+                <li>
+                    <strong>shared_preferences</strong> — Local device storage
+                </li>
+                <li>
+                    <strong>flutter_local_notifications</strong> — On-device push notifications
+                </li>
+                <li>
+                    <strong>flutter_contacts</strong> — Reads contacts only when you
+                    explicitly open the contact picker
+                </li>
+                <li>
+                    <strong>permission_handler</strong> — Requests Android runtime permissions
+                </li>
+                <li>
+                    <strong>intl</strong> — Date/time formatting (offline)
+                </li>
+            </ul>
+
+            <h3>No Analytics or Advertising</h3>
+            <ul class="cross-list">
+                <li>No Google Analytics, Firebase Analytics, or similar tools</li>
+                <li>No Facebook SDK or Meta advertising pixel</li>
+                <li>No Crashlytics or remote crash reporting</li>
+                <li>No advertising networks or ad identifiers</li>
+                <li>No A/B testing frameworks</li>
+            </ul>
+
+            <h3>Legal Disclosure</h3>
+            <p>
+                Since we hold no user data on servers, we cannot be compelled by law
+                enforcement to provide user data that we do not possess. All data
+                remains exclusively on your physical device.
+            </p>
+        </section>
+
+        <!-- ── 7. Call Screening ── -->
+        <section class="section" id="call-screening">
+            <div class="section-header">
+                <div class="section-icon icon-orange">📞</div>
+                <div class="section-header-text">
+                    <h2>7. Call Screening &amp; How It Works</h2>
+                    <p>Technical transparency about our call interception mechanism</p>
+                </div>
+            </div>
+
+            <p>
+                Call screening is the core feature of SmartCall Manager. We want to
+                be fully transparent about how it works technically.
+            </p>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <h4>Android CallScreeningService</h4>
+                        <p>
+                            We use Android's official <code>CallScreeningService</code> API
+                            (available on Android 7.0+) to intercept incoming calls. This is
+                            a standard Android framework, not a hack or root exploit.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <h4>Information Received Per Call</h4>
+                        <p>
+                            For each incoming call, Android provides us with the caller's
+                            phone number (the same number shown on your screen). We use
+                            this number <em>only</em> to match against your whitelist
+                            and to log blocked calls to your inbox.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <h4>Decision Logic</h4>
+                        <p>
+                            The allow/block decision is made entirely on-device using your
+                            saved settings. The logic runs in under 50 milliseconds and
+                            involves no network request.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <h4>Blocked Call Handling</h4>
+                        <p>
+                            When a call is blocked, we instruct Android to reject it
+                            silently. The caller hears a busy tone or voicemail. The
+                            caller's number and timestamp are saved to your local inbox.
+                            No SMS is sent to the caller; no auto-reply is triggered unless
+                            you configure one.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div class="step-body">
+                        <h4>No Call Recording</h4>
+                        <p>
+                            SmartCall Manager never records, transcribes, or analyzes call
+                            audio. We only process the metadata (phone number + time) — never
+                            the conversation itself.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box hb-yellow">
+                <span class="hb-icon">⚠️</span>
+                <div class="hb-body">
+                    <h4>Emergency Calls (911 / 999 / 112)</h4>
+                    <p>
+                        SmartCall Manager never blocks emergency service numbers.
+                        Emergency calls are handled by Android's system dialer and
+                        bypass all third-party call screening services by design.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 8. Your Rights ── -->
+        <section class="section" id="your-rights">
+            <div class="section-header">
+                <div class="section-icon icon-indigo">⚖️</div>
+                <div class="section-header-text">
+                    <h2>8. Your Rights &amp; Controls</h2>
+                    <p>Full control is always in your hands</p>
+                </div>
+            </div>
+
+            <div class="rights-grid">
+                <div class="right-item">
+                    <div class="ri-icon">👁️</div>
+                    <h4>Right to Access</h4>
+                    <p>
+                        All your data is directly visible within the app —
+                        call inbox, whitelist, and settings are always shown to you.
+                    </p>
+                </div>
+                <div class="right-item">
+                    <div class="ri-icon">✏️</div>
+                    <h4>Right to Rectify</h4>
+                    <p>
+                        Edit or update your business hours, whitelist contacts,
+                        and vacation periods at any time from within the app.
+                    </p>
+                </div>
+                <div class="right-item">
+                    <div class="ri-icon">🗑️</div>
+                    <h4>Right to Delete</h4>
+                    <p>
+                        Delete individual call log entries, clear your entire inbox,
+                        or remove whitelist contacts at any time. Uninstalling the
+                        app erases all data permanently.
+                    </p>
+                </div>
+                <div class="right-item">
+                    <div class="ri-icon">⏸️</div>
+                    <h4>Right to Restrict</h4>
+                    <p>
+                        Toggle off call protection at any time from the home screen
+                        master switch. All screening stops immediately.
+                    </p>
+                </div>
+                <div class="right-item">
+                    <div class="ri-icon">🔓</div>
+                    <h4>Revoke Permissions</h4>
+                    <p>
+                        Revoke any permission at any time via Android Settings →
+                        Apps → SmartCall Manager → Permissions.
+                    </p>
+                </div>
+                <div class="right-item">
+                    <div class="ri-icon">📤</div>
+                    <h4>No Data Export Needed</h4>
+                    <p>
+                        Since data never leaves your device, there is nothing to
+                        export from our side. Your data is already with you.
+                    </p>
+                </div>
+            </div>
+
+            <div class="highlight-box hb-blue" style="margin-top:24px;">
+                <span class="hb-icon">🇪🇺</span>
+                <div class="hb-body">
+                    <h4>GDPR &amp; CCPA Compliance</h4>
+                    <p>
+                        Because SmartCall Manager does not collect, process, or store
+                        any personal data on external servers, it operates outside
+                        the traditional scope of GDPR and CCPA data controller obligations.
+                        All processing occurs locally on your device under your direct
+                        control, consistent with both regulations' privacy-by-design principles.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 9. Children ── -->
+        <section class="section" id="children">
+            <div class="section-header">
+                <div class="section-icon icon-pink">👶</div>
+                <div class="section-header-text">
+                    <h2>9. Children's Privacy</h2>
+                    <p>Our policy regarding users under 13 (or 16 in the EU)</p>
+                </div>
+            </div>
+
+            <p>
+                SmartCall Manager is designed for <strong>business owners and professionals</strong>
+                and is intended for users aged 18 and above. The app is not directed at,
+                marketed to, or designed for children.
+            </p>
+
+            <ul class="dot-list">
+                <li>
+                    We do not knowingly collect any information from children under 13
+                    (or under 16 in EU member states)
+                </li>
+                <li>
+                    The app's functionality (managing business calls) is not appropriate
+                    or relevant for minors
+                </li>
+                <li>
+                    Since no data is collected server-side, there is no risk of
+                    inadvertent collection of children's data through our systems
+                </li>
+                <li>
+                    Parents or guardians who believe a minor has installed this app
+                    should simply uninstall it — no account deletion is needed
+                </li>
+            </ul>
+
+            <div class="highlight-box hb-red">
+                <span class="hb-icon">🚸</span>
+                <div class="hb-body">
+                    <h4>For Parents</h4>
+                    <p>
+                        If you discover that a child under 13 has installed and used
+                        SmartCall Manager, please uninstall it from their device.
+                        Contact us at privacy@smartcallmanager.app if you have concerns.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 10. Changes ── -->
+        <section class="section" id="changes">
+            <div class="section-header">
+                <div class="section-icon icon-gray">🔄</div>
+                <div class="section-header-text">
+                    <h2>10. Changes to This Policy</h2>
+                    <p>How we'll notify you of any updates</p>
+                </div>
+            </div>
+
+            <p>
+                We may update this Privacy Policy periodically to reflect changes in our
+                practices, legal requirements, or new app features. When we do:
+            </p>
+
+            <ul class="check-list">
+                <li>
+                    The "Last Updated" date at the top of this page will be revised
+                </li>
+                <li>
+                    Significant changes will be communicated via an in-app notification
+                    or a prompt when you open the app after an update
+                </li>
+                <li>
+                    Material changes that affect how your data is handled will require
+                    your re-acknowledgment
+                </li>
+                <li>
+                    Previous versions of this policy will be archived and available
+                    upon request
+                </li>
+                <li>
+                    Continued use of the app after changes take effect constitutes
+                    acceptance of the updated policy
+                </li>
+            </ul>
+
+            <h3>Version History</h3>
+            <ul class="dot-list">
+                <li>
+                    <strong>v1.0.0 — June 1, 2025</strong> — Initial privacy policy
+                    published with app launch
+                </li>
+            </ul>
+        </section>
+
+        <!-- ── 11. Contact ── -->
+        <section class="section" id="contact">
+            <div class="section-header">
+                <div class="section-icon icon-blue">📬</div>
+                <div class="section-header-text">
+                    <h2>11. Contact Us</h2>
+                    <p>We're here to answer any privacy questions you have</p>
+                </div>
+            </div>
+
+            <p>
+                If you have any questions, concerns, or requests regarding this
+                Privacy Policy or how SmartCall Manager handles your data,
+                please reach out to us:
+            </p>
+
+            <div class="contact-box">
+                <div class="cb-icon">💌</div>
+                <h3>Get in Touch</h3>
+                <p>
+                    We respond to all privacy inquiries within 48 hours.
+                    For urgent matters, please mark your subject line with "URGENT."
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:privacy@smartcallmanager.app" class="btn-primary">
+                        ✉️ Email Privacy Team
+                    </a>
+                    <a href="https://github.com/yourrepo/smartcall-manager/issues"
+                       class="btn-outline" target="_blank" rel="noopener">
+                        🐛 GitHub Issues
+                    </a>
+                </div>
+            </div>
+
+            <h3 style="margin-top:28px;">Response Time Commitments</h3>
+            <ul class="check-list">
+                <li>General privacy questions — within 48 hours</li>
+                <li>Data deletion requests — within 72 hours (device data only)</li>
+                <li>Security vulnerability reports — within 24 hours</li>
+                <li>Legal / compliance requests — within 5 business days</li>
+            </ul>
+
+            <div class="highlight-box hb-green" style="margin-top:24px;">
+                <span class="hb-icon">🤝</span>
+                <div class="hb-body">
+                    <h4>Our Commitment to You</h4>
+                    <p>
+                        We built SmartCall Manager to solve a real problem for business
+                        owners. Your trust is everything to us. If anything in this policy
+                        is unclear, or if you believe we're not living up to our commitments,
+                        please tell us immediately.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /content-wrap -->
+</div><!-- /container -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+    <div class="footer-logo">🛡️ SmartCall Manager</div>
+    <p>Privacy Policy — Version 1.0.0</p>
+    <p>© 2025 SmartCall Manager. All rights reserved.</p>
+    <p style="margin-top:8px; font-size:13px;">
+        This app operates entirely on-device. Your data never leaves your phone.
+    </p>
+    <div class="footer-links">
+        <a href="#overview">Overview</a>
+        <a href="#permissions">Permissions</a>
+        <a href="#data-sharing">Data Sharing</a>
+        <a href="#your-rights">Your Rights</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:privacy@smartcallmanager.app">privacy@smartcallmanager.app</a>
+    </div>
+</footer>
 
 </body>
 </html>
