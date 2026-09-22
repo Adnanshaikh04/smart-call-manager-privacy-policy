@@ -861,31 +861,7 @@
                             <th>Why We Need It</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>READ_PHONE_STATE</td>
-                            <td><span class="badge badge-req">Required</span></td>
-                            <td>
-                                Detects incoming calls so the app can evaluate whether
-                                to allow or block based on your rules
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ANSWER_PHONE_CALLS</td>
-                            <td><span class="badge badge-req">Required</span></td>
-                            <td>
-                                Programmatically declines (rejects) calls that fall
-                                outside your allowed hours or blocked periods
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>READ_CALL_LOG</td>
-                            <td><span class="badge badge-req">Required</span></td>
-                            <td>
-                                Reads the system call log to populate your blocked
-                                calls inbox so you can call back later
-                            </td>
-                        </tr>
+                    <tbody>                      
                         <tr>
                             <td>READ_CONTACTS</td>
                             <td><span class="badge badge-opt">Optional</span></td>
@@ -896,28 +872,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>CALL_PHONE</td>
-                            <td><span class="badge badge-opt">Optional</span></td>
-                            <td>
-                                Enables the one-tap "Call Back" button in the
-                                blocked calls inbox
-                            </td>
-                        </tr>
-                        <tr>
                             <td>RECEIVE_BOOT_COMPLETED</td>
                             <td><span class="badge badge-auto">Auto</span></td>
                             <td>
                                 Ensures call screening protection is active
                                 immediately after the device restarts without
                                 requiring you to reopen the app
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>FOREGROUND_SERVICE</td>
-                            <td><span class="badge badge-auto">Auto</span></td>
-                            <td>
-                                Keeps the call screening service running reliably
-                                so calls are never missed by the filter
                             </td>
                         </tr>
                         <tr>
